@@ -29,21 +29,21 @@
   color: #fff;
   font-size: 15px;
 }
-.screen {
+.component {
   width: 100%;
 }
-.screen .add-btn {
+.component .add-btn {
   float: right;
   margin-top: 2rem;
 }
-.screen .title {
+.component .title {
   display: inline-block;
 }
-.screen .footer-page {
+.component .footer-page {
   text-align: right;
   padding: 2rem;
 }
-.screen .table-info {
+.component .table-info {
   margin-top: 30px;
 }
 .content-container {

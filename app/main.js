@@ -1,12 +1,15 @@
-app_init = ()=>{
-    $(".route").click(route);  
+appInit = ()=>{
+    $(".action-link").click(onActionLinkClick);  
 }
 hidePages = () => {
-    $(".screen").hide();
+    $(".component").hide();
 }
-route = (e) => {
+navigate = (targetScreen) =>{
+    $(targetScreen).show();
+}
+onActionLinkClick = (e) => {
     var target = $(e.target).data("target");
     hidePages();
-    $(target).show();
+    navigate(target);
 }
-$(document).ready(app_init);
+$(document).ready(appInit);

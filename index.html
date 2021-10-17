@@ -15,8 +15,8 @@
             <div class="sidebar">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">Patients</li>
-                    <li class="sidebar-item route" data-target="#patient-list">Patients</li>
-                    <li class="sidebar-item route" data-target="#user-list">Users</li>
+                    <li class="sidebar-item action-link" data-target="#patient-list">Patients</li>
+                    <li class="sidebar-item action-link" data-target="#user-list">Users</li>
                 </ul>
             </div>
 
@@ -26,9 +26,9 @@
                 <!-- ============================================ -->
                             <!-- patients-list page -->
                 <!-- ============================================ -->
-                <div class="patient-list screen" id="patient-list">
+                <div class="patient-list component" id="patient-list">
                     <h1 class="title">patient-list</h1>
-                    <button class="btn btn-primary route add-btn" data-target="#patient-edit">Add</button>
+                    <button class="btn btn-primary action-link add-btn" data-target="#patient-edit">Add</button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-info">
                             <thead>
@@ -52,7 +52,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -62,7 +62,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -72,7 +72,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
@@ -82,7 +82,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
@@ -92,7 +92,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>           
                             </tbody>
                         </table>
@@ -102,20 +102,20 @@
                 <!-- ============================================ -->
                             <!-- patients-edit page -->
                 <!-- ============================================ -->
-                <div class="patient-edit screen" id="patient-edit">
+                <div class="patient-edit component" id="patient-edit">
                     <h1>patient-edit</h1>
                     <div class="footer-page ">
-                        <button class="btn btn-primary route" data-target="#patient-list">Save</button>
-                        <button class="btn btn-danger route" data-target="#patient-list">Cancel</button>
+                        <button class="btn btn-primary action-link" data-target="#patient-list">Save</button>
+                        <button class="btn btn-danger action-link" data-target="#patient-list">Cancel</button>
                     </div>
                 </div>
 
                 <!-- ============================================ -->
                             <!-- user-list page -->
                 <!-- ============================================ -->
-                <div class="user-list screen"  id="user-list">
+                <div class="user-list component"  id="user-list">
                     <h1 class="title">user-list</h1>
-                    <button class="btn btn-primary add-btn route" data-target="#user-edit">Add</button>
+                    <button class="btn btn-primary add-btn action-link" data-target="#user-edit">Add</button>
                     <div class="table-responsive ">
                         <table class="table table-striped table-bordered table-info">
                             <thead>
@@ -139,7 +139,7 @@
                                     <td>15/5/1998</td>
                                     <td>true</td>
                                     <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                    <td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -150,11 +150,11 @@
                 <!-- ============================================ -->
                             <!-- user-edit page -->
                 <!-- ============================================ -->
-                <div class="user-edit screen" id="user-edit">
+                <div class="user-edit component" id="user-edit">
                     <h1>user-edit</h1>
                     <div class="footer-page">
-                        <button class="btn btn-primary route" data-target="#user-list">Save</button>
-                        <button class="btn btn-danger route" data-target="#user-list">Cancel</button>
+                        <button class="btn btn-primary action-link" data-target="#user-list">Save</button>
+                        <button class="btn btn-danger action-link" data-target="#user-list">Cancel</button>
                     </div>
                 </div>
 
