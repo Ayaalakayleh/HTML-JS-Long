@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>patient project</title>
+        <link rel="stylesheet" href="modules/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="modules/bootstrap/bootstrap.js"></script>
+        <script src="app/main.js"></script>
+    </head> 
+    <body>
+        <div class="main-container">
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">Patients</li>
+                    <li class="sidebar-item route" data-target="#patient-list">Patients</li>
+                    <li class="sidebar-item route" data-target="#user-list">Users</li>
+                </ul>
+            </div>
+
+            <!-- content -->
+            <div class="content-container container-fluid">
+
+                <!-- ============================================ -->
+                            <!-- patients-list page -->
+                <!-- ============================================ -->
+                <div class="patient-list screen" id="patient-list">
+                    <h1 class="title">patient-list</h1>
+                    <button class="btn btn-primary route add-btn" data-target="#patient-edit">Add</button>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-info">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>DOB</th>
+                                    <th>Active</th>
+                                    <th>Creation</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody class="patient-list-body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>patient 1</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>patient 2</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>patient 3</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>patient 4</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>patient 5</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>           
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                            <!-- patients-edit page -->
+                <!-- ============================================ -->
+                <div class="patient-edit screen" id="patient-edit">
+                    <h1>patient-edit</h1>
+                    <div class="footer-page ">
+                        <button class="btn btn-primary route" data-target="#patient-list">Save</button>
+                        <button class="btn btn-danger route" data-target="#patient-list">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                            <!-- user-list page -->
+                <!-- ============================================ -->
+                <div class="user-list screen"  id="user-list">
+                    <h1 class="title">user-list</h1>
+                    <button class="btn btn-primary add-btn route" data-target="#user-edit">Add</button>
+                    <div class="table-responsive ">
+                        <table class="table table-striped table-bordered table-info">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>DOB</th>
+                                    <th>Active</th>
+                                    <th>Creation</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody class="user-list-body">
+                                <tr>
+                                    <td>1</td>
+                                    <td>user Name</td>
+                                    <td>email@gmail.com</td>
+                                    <td>male</td>
+                                    <td>15/5/1998</td>
+                                    <td>true</td>
+                                    <td>by aya alakayleh 6/9/2021</td>
+                                    <td><button class="btn btn-info route" data-target="#user-edit">Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                 
+                <!-- ============================================ -->
+                            <!-- user-edit page -->
+                <!-- ============================================ -->
+                <div class="user-edit screen" id="user-edit">
+                    <h1>user-edit</h1>
+                    <div class="footer-page">
+                        <button class="btn btn-primary route" data-target="#user-list">Save</button>
+                        <button class="btn btn-danger route" data-target="#user-list">Cancel</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 170px;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #383838;
+}
+.sidebar .sidebar-nav {
+  padding: 20px 20px;
+  line-height: 60px;
+  list-style: none;
+  color: #9c9a9a;
+}
+.sidebar .sidebar-brand {
+  text-align: center;
+  font-size: 30px;
+  cursor: default;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #cccc;
+}
+.sidebar .sidebar-item {
+  cursor: pointer;
+  font-size: 18px;
+  padding-left: 15px;
+}
+.sidebar .sidebar-item:hover {
+  color: #fff;
+  font-size: 15px;
+}
+.screen {
+  width: 100%;
+}
+.screen .add-btn {
+  float: right;
+  margin-top: 2rem;
+}
+.screen .title {
+  display: inline-block;
+}
+.screen .footer-page {
+  text-align: right;
+  padding: 2rem;
+}
+.screen .table-info {
+  margin-top: 30px;
+}
+.content-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 170px;
+}
