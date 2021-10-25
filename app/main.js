@@ -14,19 +14,26 @@ onActionLinkClick = (e) => {
     navigate(target);
 }
 renderTable = ()=> {
-    var x = $(".patient-list-body"); 
-   
+    var board = $(".patient-list-body"); 
+    var str = '<tr>'+
+    '<td>{{ID}}</td>'+
+    '<td>{{fname}} {{mname}} {{lname}}</td>'+
+    '<td>{{email}}</td>'+
+    '<td>{{gender}}</td>'+
+    '<td>{{DOB}}</td>'+
+    '<td>{{Active}}</td>'+
+    '<td>Created By: {{CreatedBy}} {{creationDate}}</td>'+
+    '<td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td></tr>';
+
     for( let i=0; i<patientsData.length; i++){
-        x.append('<tr>'+
-        '<td>'+patientsData[i].ID+'</td>'+
-        '<td>'+patientsData[i].fname+' '+patientsData[i].mname+' '+patientsData[i].lname+'</td>'+
-        '<td>'+patientsData[i].email+'</td>'+
-        '<td>'+patientsData[i].gender+'</td>'+
-        '<td>'+patientsData[i].DOB+'</td>'+
-        '<td>'+patientsData[i].Active+'</td>'+
-        '<td>'+'Created By:'+patientsData[i].CreatedBy+', '+patientsData[i].creationDate+'</td>'+
-        '<td><button class="btn btn-info action-link" data-target="#user-edit">Edit</button></td>'+
-        +'</tr>');
+        var templete = renderTemplete(str,patientsData[i]);
+        board.append(templete);
     }
 }
+
+renderTemplete = (templateText, data) =>{   
+   let result = templateText.replace(/{{(\w+)}}/g,(match,p1)=> data[p1]);
+   return result;  
+}
+
 $(document).ready(appInit);
