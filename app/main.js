@@ -32,8 +32,23 @@ renderTable = ()=> {
 }
 
 renderTemplete = (templateText, data) =>{   
-   let result = templateText.replace(/{{(\w+)}}/g,(match,p1)=> data[p1]);
-   return result;  
+    var myString = templateText;
+    var key;
+    var indexOpen;
+    var indexClose;
+
+    for(let i=0; i<myString.length; i++){
+        if(myString.includes("{{")){ 
+            indexOpen = myString.indexOf("{")+2;
+            indexClose =  myString.indexOf("}");
+        
+            key = myString.substring(indexOpen,indexClose);
+
+            //=== replace
+            myString = myString.replace("{{"+key+"}}", data[key]);
+        } 
+    }     
+    return myString;
 }
 
 $(document).ready(appInit);
