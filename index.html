@@ -55,7 +55,7 @@
                             <td>{{DOB}}</td>
                             <td>{{Active}}</td>
                             <td>Created By: {{CreatedBy}} {{creationDate}}</td>
-                            <td><button class="btn btn-info action-link" data-target="#patient-edit">Edit</button></td>
+                            <td><button class="btn btn-info action-link edit" data-target="#patient-edit" data-id={{ID}}>Edit</button></td>
                             </tr>
                         </template>
                     </div>
@@ -66,6 +66,7 @@
                 <!-- ============================================ -->
                 <div class="patient-edit component" id="patient-edit">
                     <h1>patient-edit</h1>
+                    <h3 class="patient-id"></h3>
                     <div class="footer-page ">
                         <button class="btn btn-primary action-link" data-target="#patient-list">Save</button>
                         <button class="btn btn-danger action-link" data-target="#patient-list">Cancel</button>

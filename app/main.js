@@ -1,6 +1,7 @@
 appInit = ()=>{
     renderTable();
     $(".action-link").click(onActionLinkClick); 
+    $(".edit").click(onEditButtonClick);
 }
 hidePages = () => {
     $(".component").hide();
@@ -22,7 +23,6 @@ renderTable = ()=> {
         list.append(templete);
     }
 }
-
 renderTemplete = (templateText, data) =>{   
     var myString = templateText; 
     for(let i=0; i<myString.length; i++){
@@ -35,6 +35,10 @@ renderTemplete = (templateText, data) =>{
         } 
     }     
     return myString;
+}
+onEditButtonClick = (e) =>{
+    var rowTarget =  $(e.target).data("id");
+    $('.patient-id').html(rowTarget);
 }
 
 $(document).ready(appInit);
