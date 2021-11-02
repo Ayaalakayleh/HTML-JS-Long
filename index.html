@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="modules/bootstrap/bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
         <script src="app/data/patientData.js"></script>
         <script src="app/main.js"></script>
     </head> 
@@ -67,8 +68,76 @@
                 <div class="patient-edit component" id="patient-edit">
                     <h1>patient-edit</h1>
                     <h3 class="patient-id"></h3>
+                    <form action="">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="FirstNameInput">First Name:</label>
+                                <input type="text" class="form-control" id="FirstNameInput" >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="MiddleNameInput">Middle Name:</label>
+                                <input type="text" class="form-control" id="MiddleNameInput" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="LastNameInput">Last Name:</label>
+                                <input type="text" class="form-control" id="LastNameInput" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Status</label>
+                                <select class="form-control StatusValue">
+                                    
+                                </select>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="ActiveInput">Active
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="EmailInput">Email</label>
+                                <input type="email" class="form-control" id="EmailInput" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DateInput">Date of Birth</label>
+                                <input type="date" class="form-control" id="DateInput">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Last check</label>
+                                <select class="form-control lastCheckInput">
+                                    
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                             <label for="GenderInput">Gender
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="maleRadio1" value="option1"> male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="femaleRadio2" value="option2"> female
+                                </label>
+                             </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Age</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Age">
+                            </div>
+                        </div>
+                    </form>
                     <div class="footer-page ">
-                        <button class="btn btn-primary action-link" data-target="#patient-list">Save</button>
+                        <button class="btn btn-primary action-link save-btn" data-target="#patient-list">Save</button>
                         <button class="btn btn-danger action-link" data-target="#patient-list">Cancel</button>
                     </div>
                 </div>
