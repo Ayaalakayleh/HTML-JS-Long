@@ -58,42 +58,41 @@ open=(id)=>{
     }
     else{
         formMode = "Edit";
-        var targetObject = GetPatientById(id);    
-        LoadControlsData(targetObject); 
+        var patientData = getById(id);    
+        LoadControlsData(patientData); 
     }
 }
 onSaveButtonClick =()=>{
     var currentPatientData = GetControlsData (patientID);
     if(formMode == "Edit"){
-        updateData(currentPatientData)
+        edit(currentPatientData);
     } 
     else{
-       AddPatientData(currentPatientData) 
+       add(currentPatientData); 
     } 
     renderTable();     
 }
-LoadControlsData = (targetObject) =>{
-    $("#FirstNameInput").val(targetObject.fname);
-    $("#MiddleNameInput").val(targetObject.mname);
-    $("#LastNameInput").val(targetObject.lname);
-    $("#EmailInput").val(targetObject.email);
-    $(".StatusValue").append($('<option>').html(targetObject.status))
-    var birthDate = moment(targetObject.DOB).format('yyyy-MM-DD')
-    $("#DateInput").val(birthDate)
-           
+LoadControlsData = (patientData) =>{
+    $("#FirstNameInput").val(patientData.fname);
+    $("#MiddleNameInput").val(patientData.mname);
+    $("#LastNameInput").val(patientData.lname);
+    $("#EmailInput").val(patientData.email);
+    $(".StatusValue").append($('<option>').html(patientData.status))
+    var birthDate = moment(patientData.DOB).format('yyyy-MM-DD')
+    $("#DateInput").val(birthDate)      
     // Active
-    if(targetObject.Active){
+    if(patientData.Active){
         $('.ActiveInput').prop('checked', true);
     }
     // Gender
-    if(targetObject.gender == 1){
+    if(patientData.gender == 1){
         $("#maleRadio1").prop('checked', true)
     }
     else{
         $("#femaleRadio2").prop('checked', true)
     }
     // Last check
-    var checkDate = moment(targetObject.lastCheck).format('yyyy-MM-DD')
+    var checkDate = moment(patientData.lastCheck).format('yyyy-MM-DD')
     $(".lastCheckInput").append($('<option>').html(checkDate));
 }
 GetControlsData = () =>{
@@ -119,7 +118,6 @@ GetControlsData = () =>{
     else{
       gender = 2 ; 
     }
-    
     let currentPatientData = {
         fname:fname,
         mname:mname,
@@ -133,8 +131,12 @@ GetControlsData = () =>{
     }   
     return currentPatientData; 
 }
-GetPatientById=(id)=>{
-    var result;
+resetControls = () =>{
+    $("input,select").val("").prop('checked', false);
+    $('.patient-id').html("");  
+}
+getById=(id)=>{
+    let result;
     for(let i=0; i<patientsData.length; i++){     
         if(id == patientsData[i].ID){
             result = patientsData[i];
@@ -142,8 +144,31 @@ GetPatientById=(id)=>{
     }
     return result;
 }
-updateData = (currentPatientData) =>{
-    var patient_Data = GetPatientById(patientID);
+getIndexById = (id)=>{
+    let index;
+    for(let i=0; i<patientsData.length; i++){     
+        if(id == patientsData[i].ID){
+            index = i;
+        }
+    }
+    return index; 
+}
+getNewID = ()=>{
+    let max = patientsData[0].ID;
+    for(let i=0;i<patientsData.length; i++){
+        if(patientsData[i].ID > max){
+            max = patientsData[i].ID
+        }
+    }
+    return max + 1 ;
+}
+add = (currentPatientData)=>{
+    let newID = getNewID();
+    currentPatientData.ID = newID;
+    patientsData.push(currentPatientData);
+}
+edit = (currentPatientData) =>{
+    let patient_Data       = getById(patientID);
     patient_Data.fname     = currentPatientData.fname;
     patient_Data.mname     = currentPatientData.mname;
     patient_Data.lname     = currentPatientData.lname;
@@ -153,43 +178,17 @@ updateData = (currentPatientData) =>{
     patient_Data.lastCheck = currentPatientData.lastCheck;
     patient_Data.Active    = currentPatientData.Active;
     patient_Data.gender    = currentPatientData.gender; 
-
     return patient_Data;
 }
-AddPatientData = (currentPatientData)=>{
-    let maxId = GetMaxId();
-    currentPatientData.ID = maxId + 1;
-    patientsData.push(currentPatientData);
-}
-GetMaxId = ()=>{
-    let max = patientsData[0].ID;
-    for(let i=0;i<patientsData.length; i++){
-        if(patientsData[i].ID > max){
-            max = patientsData[i].ID
-        }
-    }
-    return max;
-}
-resetControls = () =>{
-    $("input,select").val("").prop('checked', false);
-    $('.patient-id').html("");
-   
+Delete = (id)=>{
+    let targetIndex = getIndexById(id);    
+    patientsData.splice(targetIndex ,1)
+    return patientsData;
 }
 onConfirmDeleteBtnClick = () =>{
     $(".modal").modal("hide");
-    DeleteData();  
+    Delete(patientID);  
+    resetControls();
     renderTable();  
-}
-DeleteData = ()=>{
-    var targetObject = GetPatientById(patientID);    
-    patientsData.splice(findIndexObject(targetObject),1)
-    resetControls(); 
-}
-findIndexObject = (targetObject)=>{ 
-    for(let i=0; i<patientsData.length; i++){
-        if(patientsData[i] == targetObject){
-            return IndexObj = i;
-        }
-    }
 }
 $(document).ready(appInit);
