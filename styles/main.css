@@ -36,6 +36,13 @@
   float: right;
   margin-top: 2rem;
 }
+.component .delete-btn {
+  float: right;
+  margin: 12px;
+}
+.del-btn {
+  padding: 5px;
+}
 .component .title {
   display: inline-block;
 }

@@ -56,7 +56,9 @@
                             <td>{{DOB}}</td>
                             <td>{{Active}}</td>
                             <td>Created By: {{CreatedBy}} {{creationDate}}</td>
-                            <td><button class="btn btn-info action-link edit" data-target="#patient-edit" data-id={{ID}}>Edit</button></td>
+                            <td><button class="btn btn-info action-link edit" data-target="#patient-edit" data-id={{ID}}>Edit</button>
+                                <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
+                            </td>
                             </tr>
                         </template>
                     </div>
@@ -67,6 +69,7 @@
                 <!-- ============================================ -->
                 <div class="patient-edit component" id="patient-edit">
                     <h1>patient-edit</h1>
+                    <button class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>
                     <h3 class="patient-id"></h3>
                     <form action="">
                         <div class="col-sm-6">
@@ -141,7 +144,26 @@
                         <button class="btn btn-danger action-link" data-target="#patient-list">Cancel</button>
                     </div>
                 </div>
-
+                <!-- ====================================================================================================== -->
+                <!--========== Confirm Modal ============================================================================== -->
+                <div class="modal fade" id="delete-Modal">
+                    <div class="modal-dialog modal-xs">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Delete</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Are you sure delete this patient ?</h4>
+                          <h4><small>This process can't be undone.</small></h4>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          <button class="btn btn-primary action-link confirm-btn" data-target="#patient-list">Confirm</button>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
                 <!-- ============================================ -->
                             <!-- user-list page -->
                 <!-- ============================================ -->
