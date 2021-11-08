@@ -1,44 +1,21 @@
 appInit = ()=>{
     renderTable();
-    $(".action-link").click(onActionLinkClick); 
+    $(".action-link").click(routerEngine.onActionLinkClick); 
     $(".edit").click(onEditButtonClick);
     $(".save-btn").click(onSaveButtonClick);
     $(".add-btn").click(onAddButtonClick);
     $(".confirm-btn").click(onConfirmDeleteBtnClick);
 }
-hidePages = () => {
-    $(".component").hide();
-}
-navigate = (targetScreen) =>{
-    $(targetScreen).show();
-}
-onActionLinkClick = (e) => {
-    var target = $(e.target).data("target");
-    hidePages();
-    navigate(target);
-}
+
 renderTable = ()=> {
     $(".patient-list-body").empty();
     var list = $(".patient-list-body"); 
     var str = $(".template").html(); // just Show id to user 
 
     for( let i=0; i<patientsData.length; i++){
-        var templete = renderTemplete(str,patientsData[i]);
+        var templete = templateEngine.renderTemplete(str,patientsData[i]);
         list.append(templete);
     }
-}
-renderTemplete = (templateText, data) =>{   
-    var myString = templateText; 
-    for(let i=0; i<myString.length; i++){
-        if(myString.includes("{{")){     
-            var indexOpen = myString.indexOf("{")+2;
-            var indexClose =  myString.indexOf("}");
-            var key = myString.substring(indexOpen,indexClose);
-            //=== replace
-            myString = myString.replace("{{"+key+"}}", data[key]);
-        } 
-    }     
-    return myString;
 }
 var patientID;
 var formMode ;
@@ -58,17 +35,17 @@ open=(id)=>{
     }
     else{
         formMode = "Edit";
-        var patientData = getById(id);    
+        var patientData = DataService.getById(id);    
         LoadControlsData(patientData); 
     }
 }
 onSaveButtonClick =()=>{
     var currentPatientData = GetControlsData (patientID);
     if(formMode == "Edit"){
-        edit(currentPatientData);
+        DataService.edit(currentPatientData);
     } 
     else{
-       add(currentPatientData); 
+        DataService.add(currentPatientData); 
     } 
     renderTable();     
 }
@@ -135,59 +112,9 @@ resetControls = () =>{
     $("input,select").val("").prop('checked', false);
     $('.patient-id').html("");  
 }
-getById=(id)=>{
-    let result;
-    for(let i=0; i<patientsData.length; i++){     
-        if(id == patientsData[i].ID){
-            result = patientsData[i];
-        }
-    }
-    return result;
-}
-getIndexById = (id)=>{
-    let index;
-    for(let i=0; i<patientsData.length; i++){     
-        if(id == patientsData[i].ID){
-            index = i;
-        }
-    }
-    return index; 
-}
-getNewID = ()=>{
-    let max = patientsData[0].ID;
-    for(let i=0;i<patientsData.length; i++){
-        if(patientsData[i].ID > max){
-            max = patientsData[i].ID
-        }
-    }
-    return max + 1 ;
-}
-add = (currentPatientData)=>{
-    let newID = getNewID();
-    currentPatientData.ID = newID;
-    patientsData.push(currentPatientData);
-}
-edit = (currentPatientData) =>{
-    let patient_Data       = getById(patientID);
-    patient_Data.fname     = currentPatientData.fname;
-    patient_Data.mname     = currentPatientData.mname;
-    patient_Data.lname     = currentPatientData.lname;
-    patient_Data.email     = currentPatientData.email;
-    patient_Data.status    = currentPatientData.status;
-    patient_Data.DOB       = currentPatientData.DOB;
-    patient_Data.lastCheck = currentPatientData.lastCheck;
-    patient_Data.Active    = currentPatientData.Active;
-    patient_Data.gender    = currentPatientData.gender; 
-    return patient_Data;
-}
-Delete = (id)=>{
-    let targetIndex = getIndexById(id);    
-    patientsData.splice(targetIndex ,1)
-    return patientsData;
-}
 onConfirmDeleteBtnClick = () =>{
     $(".modal").modal("hide");
-    Delete(patientID);  
+    DataService.Delete(patientID);  
     resetControls();
     renderTable();  
 }
