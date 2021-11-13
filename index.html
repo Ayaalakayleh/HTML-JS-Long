@@ -55,10 +55,10 @@
                             <td>{{ID}}</td>
                             <td>{{fname}} {{mname}} {{lname}}</td>
                             <td>{{email}}</td>
-                            <td>{{gender}}</td>
-                            <td>{{DOB}}</td>
-                            <td>{{Active}}</td>
-                            <td>Created By: {{CreatedBy}} {{creationDate}}</td>
+                            <td>{{gender|gender|male-female}}</td>
+                            <td>{{DOB|date|yyyy-MM-DD}}</td>
+                            <td>{{Active|status|active-notActive}}</td>
+                            <td>Created By: {{CreatedBy}} {{creationDate|date|yyyy-MM-DD}}</td>
                             <td><button class="btn btn-info action-link edit" data-target="#patient-edit" data-id={{ID}}>Edit</button>
                                 <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
                             </td>
@@ -119,7 +119,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Last check</label>
+                                <label>Last check</label>
                                 <select class="form-control lastCheckInput">
                                     
                                 </select>
@@ -137,8 +137,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Age</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Age">
+                                <label for="AgeInput">Age</label>
+                                <input type="email" class="form-control" id="AgeInput" placeholder="Age">
                             </div>
                         </div>
                     </form>

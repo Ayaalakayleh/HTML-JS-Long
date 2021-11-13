@@ -54,9 +54,12 @@ LoadControlsData = (patientData) =>{
     $("#MiddleNameInput").val(patientData.mname);
     $("#LastNameInput").val(patientData.lname);
     $("#EmailInput").val(patientData.email);
-    $(".StatusValue").append($('<option>').html(patientData.status))
-    var birthDate = moment(patientData.DOB).format('yyyy-MM-DD')
-    $("#DateInput").val(birthDate)      
+    $(".StatusValue").append($('<option>').html(patientData.status));
+    var birthDate = moment(patientData.DOB).format('yyyy-MM-DD');
+    let age = moment(birthDate).fromNow(true);  
+    $("#DateInput").val(birthDate) ;  
+    $("#AgeInput").val(age);
+
     // Active
     if(patientData.Active){
         $('.ActiveInput').prop('checked', true);
@@ -78,7 +81,7 @@ GetControlsData = () =>{
     var lname   = $("#LastNameInput").val();
     var email   = $("#EmailInput").val();
     var status  = $(".StatusValue").val();
-    var DOB     = $("#DateInput").val();
+    var DOB     = new Date($("#DateInput").val());
     var lastCheck = $(".lastCheckInput").val();
     var active;
     var gender;
