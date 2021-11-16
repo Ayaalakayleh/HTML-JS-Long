@@ -64,7 +64,7 @@ successAlert=()=>{
     $("input").parent('.form-group').removeClass("has-error");
     $("input").siblings("span").hide();
 }
-isRequiredValid=(element)=>{
+validateRequireField=(element)=>{
     if(element.val() !== ''){
         return true;   
     }
@@ -72,7 +72,7 @@ isRequiredValid=(element)=>{
         return false;
     }
 }
-isPositiveNumber=(element)=>{
+validatePositiveNumberField=(element)=>{
     let pattern = /^[1-9]\d*/g ;
     if( pattern.test(element.val()) && element.val()!==''){
         return true;   
@@ -81,7 +81,7 @@ isPositiveNumber=(element)=>{
         return false;
     }
 }
-isEmailValid=(element)=>{
+vallidateEmailField=(element)=>{
     let pattern =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if( pattern.test(element.val()) && element.val()!=='' ){
         return true;   
@@ -92,40 +92,41 @@ isEmailValid=(element)=>{
 }
 ValidateForm=()=>{
     var isValid =true;
-    let email = $("#EmailInput");
-    let fname = $("#FirstNameInput");
-    let mname = $("#MiddleNameInput");
-    let lname = $("#LastNameInput");
-    let age = $("#AgeInput");
-   
-    
-    if( !isEmailValid(email)){
-        isValid = false;
-        errorAlert(email);
-    }  
-    if( !isRequiredValid(fname)){
-        isValid = false;
-        errorAlert(fname);
-    }
-    if( !isRequiredValid(mname)){
-        isValid = false;
-        errorAlert(mname);
-    }
-    if( !isRequiredValid(lname)){
-        isValid = false;
-        errorAlert(lname);
-    }
-    if( !isPositiveNumber(age)){
-        isValid = false;
-        errorAlert(age);
+    let elements = $("[data-validation]");
+    for(let i=0; i<elements.length; i++){
+        
+        let element = elements[i];
+        let target = $(element).data("validation");
+
+        switch(target){
+            case "required":
+                if( !validateRequireField($(element)) ){
+                    isValid = false;
+                    errorAlert($(element))
+                }
+                break;
+            case "email":
+                if( !vallidateEmailField($(element)) ){
+                    isValid = false;
+                    errorAlert($(element))
+                }
+                break;
+            case "positiveNumber" :
+                if( !validatePositiveNumberField($(element)) ){
+                    isValid = false;
+                    errorAlert($(element))
+                } 
+                break;   
+        }
     }
 
-    if(isValid){
-        successAlert();
-        return true;
+    if(!isValid){
+        return false;
     }
     else{
-        return false;
+        successAlert();
+       
+        return true;
     }   
 }
 LoadControlsData = (patientData) =>{
