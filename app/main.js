@@ -64,39 +64,69 @@ successAlert=()=>{
     $("input").parent('.form-group').removeClass("has-error");
     $("input").siblings("span").hide();
 }
+isRequiredValid=(element)=>{
+    if(element.val() !== ''){
+        return true;   
+    }
+    else{
+        return false;
+    }
+}
+isPositiveNumber=(element)=>{
+    let pattern = /^[1-9]\d*/g ;
+    if( pattern.test(element.val()) && element.val()!==''){
+        return true;   
+    }
+    else{
+        return false;
+    }
+}
+isEmailValid=(element)=>{
+    let pattern =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if( pattern.test(element.val()) && element.val()!=='' ){
+        return true;   
+    }
+    else{
+        return false;
+    }
+}
 ValidateForm=()=>{
     var isValid =true;
     let email = $("#EmailInput");
     let fname = $("#FirstNameInput");
     let mname = $("#MiddleNameInput");
     let lname = $("#LastNameInput");
-    let emailPattern =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    let namePattern = /^[a-zA-Zء-ي]/;     
+    let age = $("#AgeInput");
+   
     
-    if( !emailPattern.test(email.val()) || email.val() === ''){
+    if( !isEmailValid(email)){
         isValid = false;
         errorAlert(email);
     }  
-    if( !namePattern.test(fname.val()) || fname.val() === ''){
+    if( !isRequiredValid(fname)){
         isValid = false;
         errorAlert(fname);
     }
-    if( !namePattern.test(mname.val()) || mname.val() === ''){
+    if( !isRequiredValid(mname)){
         isValid = false;
         errorAlert(mname);
     }
-    if( !namePattern.test(lname.val()) || lname.val() === ''){
+    if( !isRequiredValid(lname)){
         isValid = false;
         errorAlert(lname);
     }
-    
+    if( !isPositiveNumber(age)){
+        isValid = false;
+        errorAlert(age);
+    }
+
     if(isValid){
         successAlert();
         return true;
     }
     else{
         return false;
-    }
+    }   
 }
 LoadControlsData = (patientData) =>{
     $("#FirstNameInput").val(patientData.fname);
@@ -106,7 +136,7 @@ LoadControlsData = (patientData) =>{
     $(".StatusValue").append($('<option>').html(patientData.status));
     var birthDate = moment(patientData.DOB).format('yyyy-MM-DD');
     let age = moment(birthDate).fromNow(true);  
-    $("#DateInput").val(birthDate) ;  
+    $("#DateInput").val(birthDate);  
     $("#AgeInput").val(age);
 
     // Active
