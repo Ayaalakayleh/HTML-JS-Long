@@ -59,3 +59,6 @@
   right: 0;
   left: 170px;
 }
+.component .action-alert {
+  display: none;
+}

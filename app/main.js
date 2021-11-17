@@ -49,7 +49,9 @@ onSaveButtonClick =(e)=>{
         else{
             DataService.add(currentPatientData);     
         } 
-        routerEngine.onActionLinkClick(e);
+        setTimeout(function(){
+            routerEngine.onActionLinkClick(e);
+        },1500)
     }
     else{
         return;
@@ -59,6 +61,19 @@ onSaveButtonClick =(e)=>{
 errorAlert=(element)=>{
     element.parent('.form-group').addClass("has-error");
     element.siblings("span").html("invalid");
+}
+showBoxAlert=(status,str)=>{
+    //success alert
+   if(status === 'success'){
+        $(".action-alert").removeClass("alert-danger");
+        $(".action-alert").addClass("alert-success");
+   }
+   // error alert
+   else if(status === 'error'){
+        $(".action-alert").removeClass("alert-success");
+        $(".action-alert").addClass("alert-danger");
+   }
+    $(".action-alert").html(str).fadeIn();   
 }
 successAlert=()=>{
     $("input").parent('.form-group').removeClass("has-error");
@@ -102,19 +117,22 @@ ValidateForm=()=>{
             case "required":
                 if( !validateRequireField($(element)) ){
                     isValid = false;
-                    errorAlert($(element))
+                    errorAlert($(element));
+                    showBoxAlert("error","name is invalid");
                 }
                 break;
             case "email":
                 if( !vallidateEmailField($(element)) ){
                     isValid = false;
-                    errorAlert($(element))
+                    errorAlert($(element));
+                    showBoxAlert("error","Email is invalid");
                 }
                 break;
             case "positiveNumber" :
                 if( !validatePositiveNumberField($(element)) ){
                     isValid = false;
-                    errorAlert($(element))
+                    errorAlert($(element));
+                    showBoxAlert("error","Age number is invalid");
                 } 
                 break;   
         }
@@ -125,7 +143,7 @@ ValidateForm=()=>{
     }
     else{
         successAlert();
-       
+        showBoxAlert("success","Data Saved successfully");
         return true;
     }   
 }
