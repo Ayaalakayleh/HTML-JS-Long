@@ -39,7 +39,7 @@ open=(id)=>{
     }
 }
 onSaveButtonClick =(e)=>{ 
-   let checkValidation =  ValidateForm();
+   let checkValidation =  validationEngine.ValidateForm();
 
    if(checkValidation){
         var currentPatientData = GetControlsData (patientID);
@@ -57,95 +57,6 @@ onSaveButtonClick =(e)=>{
         return;
     }
     renderTable(); 
-}
-errorAlert=(element)=>{
-    element.parent('.form-group').addClass("has-error");
-    element.siblings("span").html("invalid");
-}
-showBoxAlert=(status,str)=>{
-    //success alert
-   if(status === 'success'){
-        $(".action-alert").removeClass("alert-danger");
-        $(".action-alert").addClass("alert-success");
-   }
-   // error alert
-   else if(status === 'error'){
-        $(".action-alert").removeClass("alert-success");
-        $(".action-alert").addClass("alert-danger");
-   }
-    $(".action-alert").html(str).fadeIn();   
-}
-successAlert=()=>{
-    $("input").parent('.form-group').removeClass("has-error");
-    $("input").siblings("span").hide();
-}
-validateRequireField=(element)=>{
-    if(element.val() !== ''){
-        return true;   
-    }
-    else{
-        return false;
-    }
-}
-validatePositiveNumberField=(element)=>{
-    let pattern = /^[1-9]\d*/g ;
-    if( pattern.test(element.val()) && element.val()!==''){
-        return true;   
-    }
-    else{
-        return false;
-    }
-}
-vallidateEmailField=(element)=>{
-    let pattern =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    if( pattern.test(element.val()) && element.val()!=='' ){
-        return true;   
-    }
-    else{
-        return false;
-    }
-}
-ValidateForm=()=>{
-    var isValid =true;
-    let elements = $("[data-validation]");
-    for(let i=0; i<elements.length; i++){
-        
-        let element = elements[i];
-        let target = $(element).data("validation");
-
-        switch(target){
-            case "required":
-                if( !validateRequireField($(element)) ){
-                    isValid = false;
-                    errorAlert($(element));
-                    showBoxAlert("error","name is invalid");
-                }
-                break;
-            case "email":
-                if( !vallidateEmailField($(element)) ){
-                    isValid = false;
-                    errorAlert($(element));
-                    showBoxAlert("error","Email is invalid");
-                }
-                break;
-            case "positiveNumber" :
-                if( !validatePositiveNumberField($(element)) ){
-                    isValid = false;
-                    errorAlert($(element));
-                    showBoxAlert("error","Age number is invalid");
-                } 
-                break;   
-        }
-    }
-
-    if(!isValid){
-        return false;
-    }
-    else{
-        successAlert();
-        showBoxAlert("success","Data Saved successfully");
-        return true;
-    }   
 }
 LoadControlsData = (patientData) =>{
     $("#FirstNameInput").val(patientData.fname);
