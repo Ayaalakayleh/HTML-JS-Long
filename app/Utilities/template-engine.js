@@ -4,25 +4,25 @@ class templateEngineClass {
     init =() =>{}
     
     renderTemplete = (templateText, data) =>{   
-        var myString = templateText; 
-        for(let i=0; i<myString.length; i++){
-            if(myString.includes("{{")){     
-                var indexOpen = myString.indexOf("{")+2;
-                var indexClose =  myString.indexOf("}");
-                var key = myString.substring(indexOpen,indexClose);
+        var template = templateText; 
+        for(let i=0; i<template.length; i++){
+            if(template.includes("{{")){     
+                var indexOpen = template.indexOf("{")+2;
+                var indexClose =  template.indexOf("}");
+                var key = template.substring(indexOpen,indexClose);
                 let splitting = key.split("|");
 
                 //=== replace property which need format
                 if(splitting.length >1){
                     let format = this.fromatFunction(splitting,data) ;
-                    myString = myString.replace("{{"+key+"}}", format );  
+                    template = template.replace("{{"+key+"}}", format );  
                 }
                 
                 //=== replace normal property
-                myString = myString.replace("{{"+key+"}}", data[key]);
+                template = template.replace("{{"+key+"}}", data[key]);
             }       
         }    
-        return myString;
+        return template;
     }
     fromatFunction = (array, data)=>{  // [propertyName, formatter, formateName]
         if(array.length == 1){

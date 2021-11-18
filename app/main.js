@@ -5,11 +5,12 @@ appInit = ()=>{
     $(".save-btn").click(onSaveButtonClick);
     $(".add-btn").click(onAddButtonClick);
     $(".confirm-btn").click(onConfirmDeleteBtnClick);
+    ToastrAlert();
 }
 renderTable = ()=> {
     $(".patient-list-body").empty();
     var list = $(".patient-list-body"); 
-    var str = $(".template").html(); // just Show id to user 
+    var str = $(".template").html();  
 
     for( let i=0; i<patientsData.length; i++){
         var templete = templateEngine.renderTemplete(str,patientsData[i]);
@@ -38,6 +39,14 @@ open=(id)=>{
         LoadControlsData(patientData); 
     }
 }
+ToastrAlert=()=>{
+    toastr.options = {
+        "closeButton": true,  
+        "progressBar": true,  //timer line
+        "positionClass": "toast-bottom-left",       
+        "timeOut": "3000",      
+    }
+}
 onSaveButtonClick =(e)=>{ 
    let checkValidation =  validationEngine.ValidateForm();
 
@@ -45,15 +54,19 @@ onSaveButtonClick =(e)=>{
         var currentPatientData = GetControlsData (patientID);
         if(formMode == "Edit"){
             DataService.edit(currentPatientData);
+            toastr.success('Edit Data Successfuly');
         }     
         else{
-            DataService.add(currentPatientData);     
+            DataService.add(currentPatientData);
+            toastr.success('Add Data Successfuly');     
         } 
         setTimeout(function(){
-            routerEngine.onActionLinkClick(e);
-        },1500)
+            routerEngine.onActionLinkClick(e); 
+            toastr.success('Saved Data Successfuly');
+        },1000)
     }
     else{
+        toastr.error('failed saving');
         return;
     }
     renderTable(); 
@@ -123,11 +136,13 @@ GetControlsData = () =>{
 resetControls = () =>{
     $("input,select").val("").prop('checked', false);
     $('.patient-id').html("");  
+    $(".action-alert").fadeOut();
 }
 onConfirmDeleteBtnClick = () =>{
     $(".modal").modal("hide");
     DataService.Delete(patientID);  
     resetControls();
-    renderTable();  
+    renderTable(); 
+    toastr.success('Delete Data Successfuly');
 }
 $(document).ready(appInit);
