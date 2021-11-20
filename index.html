@@ -11,6 +11,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="app/data/patientData.js"></script>
         <script src="app/main.js"></script>
+        <script src="app/Patient/patient-edit.js"></script>
         <script src="app/Utilities/data-service.js"></script>
         <script src="app/Utilities/router-engine.js"></script>
         <script src="app/Utilities/template-engine.js"></script>
@@ -62,7 +63,7 @@
                             <td>{{DOB|date|yyyy-MM-DD}}</td>
                             <td>{{Active|status|active-notActive}}</td>
                             <td>Created By: {{CreatedBy}} {{creationDate|date|yyyy-MM-DD}}</td>
-                            <td><button class="btn btn-info action-link edit" data-target="#patient-edit" data-id={{ID}}>Edit</button>
+                            <td><button class="btn btn-info action-link edit edit-btn" data-target="#patient-edit" data-id={{ID}}>Edit</button>
                                 <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
                             </td>
                             </tr>
