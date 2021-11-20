@@ -1,7 +1,45 @@
 class PatientEditScreen{
-    constructor(){}
-    init=()=>{}
+    constructor(){
+        this.patientID;
+        this.formMode ;
+    }
+    init=()=>{
+        this.ToastrAlert();
+        $(".save-btn").click(this.onSaveButtonClick);
+    }
 
+    ToastrAlert=()=>{
+        toastr.options = {
+            "closeButton": true,  
+            "progressBar": true,  //timer line
+            "positionClass": "toast-bottom-left",       
+            "timeOut": "3000",      
+        }
+    }
+    onSaveButtonClick =(e)=>{ 
+        let checkValidation =  validationEngine.ValidateForm();
+     
+        if(checkValidation){
+            var currentPatientData = this.GetControlsData(this.patientID);
+            if(this.formMode == "Edit"){
+                DataService.edit(currentPatientData);
+                toastr.success('Edit Data Successfuly');
+            }     
+            else{
+                DataService.add(currentPatientData);
+                toastr.success('Add Data Successfuly');     
+            } 
+            setTimeout(function(){
+                routerEngine.onActionLinkClick(e); 
+                toastr.success('Saved Data Successfuly');
+            },1000)
+        }
+        else{
+            toastr.error('failed saving');
+            return;
+        }
+        templateEngine.renderTable(); 
+    }
     LoadControlsData = (patientData) =>{
         $("#FirstNameInput").val(patientData.fname);
         $("#MiddleNameInput").val(patientData.mname);

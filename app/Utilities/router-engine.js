@@ -3,8 +3,10 @@ class routerEngineClass {
 
     }
     init =() =>{
-        
+        $(".action-link").click(this.onActionLinkClick); 
+        console.log("rout")      
     }
+    
     hidePages = () => {
         $(".component").hide();
     }

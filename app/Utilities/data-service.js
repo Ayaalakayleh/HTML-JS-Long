@@ -1,9 +1,10 @@
 class DataServiceClass {
     constructor(){
-
+        this.patientID;
+        this.formMode ;
     }
     init =() =>{
-        
+        $(".confirm-btn").click(this.onConfirmDeleteBtnClick);
     }
     getAll =()=>{
         return patientsData;
@@ -57,6 +58,13 @@ class DataServiceClass {
         let targetIndex = this.getIndexById(id);    
         patientsData.splice(targetIndex ,1)
         return patientsData;
+    }
+    onConfirmDeleteBtnClick = () =>{
+        $(".modal").modal("hide");
+        this.Delete(this.patientID);  
+        patientEditScreen.resetControls();
+        templateEngine.renderTable(); 
+        toastr.success('Delete Data Successfuly');
     }
 }
 let DataService = new DataServiceClass();
