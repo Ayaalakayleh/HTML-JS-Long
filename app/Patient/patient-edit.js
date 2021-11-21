@@ -7,7 +7,18 @@ class PatientEditScreen{
         this.ToastrAlert();
         $(".save-btn").click(this.onSaveButtonClick);
     }
-
+    open=(id)=>{
+        this.patientID = id ;
+        if(!id){
+            this.formMode ="New";      
+            this.resetControls();
+        }
+        else{
+            this.formMode = "Edit";
+            var patientData = DataService.getById(id);    
+            this.LoadControlsData(patientData); 
+        }
+    }
     ToastrAlert=()=>{
         toastr.options = {
             "closeButton": true,  
@@ -22,7 +33,7 @@ class PatientEditScreen{
         if(checkValidation){
             var currentPatientData = this.GetControlsData(this.patientID);
             if(this.formMode == "Edit"){
-                DataService.edit(currentPatientData);
+                DataService.edit(currentPatientData,this.patientID);
                 toastr.success('Edit Data Successfuly');
             }     
             else{
@@ -38,7 +49,7 @@ class PatientEditScreen{
             toastr.error('failed saving');
             return;
         }
-        templateEngine.renderTable(); 
+        patientListScreen.renderTable(); 
     }
     LoadControlsData = (patientData) =>{
         $("#FirstNameInput").val(patientData.fname);
@@ -110,3 +121,4 @@ class PatientEditScreen{
     
 }
 let patientEditScreen = new PatientEditScreen();
+patientEditScreen.init();

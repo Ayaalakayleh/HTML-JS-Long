@@ -56,7 +56,7 @@
                             <tbody class="patient-list-body"></tbody>
                         </table>
                         <template class="template">
-                            <tr>
+                            <tr data-id={{ID}}>
                             <td>{{ID}}</td>
                             <td>{{fname}} {{mname}} {{lname}}</td>
                             <td>{{email}}</td>
@@ -64,7 +64,7 @@
                             <td>{{DOB|date|yyyy-MM-DD}}</td>
                             <td>{{Active|status|active-notActive}}</td>
                             <td>Created By: {{CreatedBy}} {{creationDate|date|yyyy-MM-DD}}</td>
-                            <td><button class="btn btn-info action-link edit edit-btn" data-target="#patient-edit" data-id={{ID}}>Edit</button>
+                            <td><button class="btn btn-info action-link edit edit-btn" data-target="#patient-edit" >Edit</button>
                                 <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
                             </td>
                             </tr>

@@ -3,6 +3,6 @@ appInit = ()=>{
     patientListScreen.init();
     patientEditScreen.init();
     routerEngine.init();
-    DataService.init();
+    // DataService.init();
 }
 $(document).ready(appInit);

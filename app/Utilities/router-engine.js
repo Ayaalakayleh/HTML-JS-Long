@@ -4,7 +4,6 @@ class routerEngineClass {
     }
     init =() =>{
         $(".action-link").click(this.onActionLinkClick); 
-        console.log("rout")      
     }
     
     hidePages = () => {
@@ -20,3 +19,4 @@ class routerEngineClass {
     }
 }
 let routerEngine = new routerEngineClass();
+// routerEngine.init();

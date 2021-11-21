@@ -1,19 +1,8 @@
-class templateEngineClass {
+class TemplateEngineClass {
     constructor(){}
 
-    init =() =>{
-        this.renderTable()
-    }
-    renderTable = ()=> {
-        $(".patient-list-body").empty();
-        var list = $(".patient-list-body"); 
-        var str = $(".template").html();  
-    
-        for( let i=0; i<patientsData.length; i++){
-            var templete = templateEngine.renderTemplete(str,patientsData[i]);
-            list.append(templete);
-        }
-    }
+    init =() =>{ }
+ 
     renderTemplete = (templateText, data) =>{   
         var template = templateText; 
         for(let i=0; i<template.length; i++){
@@ -80,4 +69,4 @@ class templateEngineClass {
         }
     }
 }
-let templateEngine = new templateEngineClass();
+let templateEngine = new TemplateEngineClass();

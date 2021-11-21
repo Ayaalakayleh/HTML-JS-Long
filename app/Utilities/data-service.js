@@ -1,11 +1,8 @@
 class DataServiceClass {
-    constructor(){
-        this.patientID;
-        this.formMode ;
-    }
-    init =() =>{
-        $(".confirm-btn").click(this.onConfirmDeleteBtnClick);
-    }
+    constructor(){}
+        
+    init =() =>{}
+    
     getAll =()=>{
         return patientsData;
     }
@@ -27,21 +24,12 @@ class DataServiceClass {
         }
         return index; 
     }
-    getNewID = ()=>{
-        let max = patientsData[0].ID;
-        for(let i=0;i<patientsData.length; i++){
-            if(patientsData[i].ID > max){
-                max = patientsData[i].ID
-            }
-        }
-        return max + 1 ;
-    }
     add = (currentPatientData)=>{
         let newID = this.getNewID();
         currentPatientData.ID = newID;
         patientsData.push(currentPatientData);
     }
-    edit = (currentPatientData) =>{
+    edit = (currentPatientData,patientID) =>{
         let patient_Data       = this.getById(patientID);
         patient_Data.fname     = currentPatientData.fname;
         patient_Data.mname     = currentPatientData.mname;
@@ -59,12 +47,15 @@ class DataServiceClass {
         patientsData.splice(targetIndex ,1)
         return patientsData;
     }
-    onConfirmDeleteBtnClick = () =>{
-        $(".modal").modal("hide");
-        this.Delete(this.patientID);  
-        patientEditScreen.resetControls();
-        templateEngine.renderTable(); 
-        toastr.success('Delete Data Successfuly');
+     getNewID = ()=>{
+        let max = patientsData[0].ID;
+        for(let i=0;i<patientsData.length; i++){
+            if(patientsData[i].ID > max){
+                max = patientsData[i].ID
+            }
+        }
+        return max + 1 ;
     }
 }
 let DataService = new DataServiceClass();
+DataService.init();

@@ -64,3 +64,10 @@
 .component .action-alert {
   display: none;
 }
+#patient-edit {
+  font-size: 10px;
+  margin: 12px auto;
+}
+#patient-edit .form-group {
+  width: 50rem;
+}
