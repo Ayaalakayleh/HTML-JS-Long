@@ -1,6 +1,7 @@
 class ValidationEngine{
     constructor(){}
     init=()=>{}
+
     errorAlert=(element)=>{
         element.parent('.form-group').addClass("has-error");
         element.siblings("span").html("invalid");
@@ -77,7 +78,7 @@ class ValidationEngine{
                         this.errorAlert($(element));
                         this.showBoxAlert("error","Age number is invalid");
                     } 
-                    break;   
+                break;   
             }
         }
     

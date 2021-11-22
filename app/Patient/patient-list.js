@@ -1,12 +1,11 @@
 class PatientListScreen{
     constructor(){ }
         
-    init=()=>{
+    init=()=>{ }
+        
+    open=()=>{
         this.renderTable();
-        $(".add-btn").click(this.onAddButtonClick);
-        $(".edit").click(this.onEditButtonClick);
-        $(".confirm-btn").click(this.onConfirmDeleteBtnClick);
-
+        this.addEditClickEvent();
     }
     renderTable = ()=> {
         $(".patient-list-body").empty();
@@ -15,7 +14,13 @@ class PatientListScreen{
         for( let i=0; i<patientsData.length; i++){
             var templete = templateEngine.renderTemplete(str,patientsData[i]);
             list.append(templete);
-        }    
+        } 
+        this.addEditClickEvent();
+    }
+    addEditClickEvent=()=>{
+        $(".add-btn").click(this.onAddButtonClick);
+        $(".edit").click(this.onEditButtonClick);
+        $(".del-btn").click(this.onDeleteButtonClick)
     }
     onEditButtonClick = (e)=>{
         var IdRowTarget =  $(e.target).parents("tr").data("id");
@@ -24,14 +29,11 @@ class PatientListScreen{
     }
     onAddButtonClick = ()=>{
         patientEditScreen.open();    
-    }
-    onConfirmDeleteBtnClick = () =>{
-        $(".modal").modal("hide");
-        DataService.Delete(this.patientID);  
-        patientEditScreen.resetControls();
-        this.renderTable(); 
-        toastr.success('Delete Data Successfuly');
-    }
+    } 
+    onDeleteButtonClick=(e)=>{
+        var IdRowTarget =  $(e.target).parents("tr").data("id");
+        DataService.Delete(IdRowTarget);  
+    } 
 }
 let patientListScreen = new PatientListScreen();
 patientListScreen.init();

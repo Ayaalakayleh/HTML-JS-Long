@@ -6,6 +6,7 @@ class PatientEditScreen{
     init=()=>{
         this.ToastrAlert();
         $(".save-btn").click(this.onSaveButtonClick);
+        $(".confirm-btn").click(this.onConfirmDeleteBtnClick);
     }
     open=(id)=>{
         this.patientID = id ;
@@ -118,7 +119,13 @@ class PatientEditScreen{
         $('.patient-id').html("");  
         $(".action-alert").fadeOut();
     }
-    
+    onConfirmDeleteBtnClick = () =>{
+        $(".modal").modal("hide");
+        DataService.Delete(this.patientID);  
+        this.resetControls();
+        patientListScreen.renderTable(); 
+        toastr.success('Delete Data Successfuly');
+    }
 }
 let patientEditScreen = new PatientEditScreen();
 patientEditScreen.init();

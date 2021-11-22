@@ -1,8 +1,6 @@
-appInit = ()=>{
+$(document).ready(function(){
     templateEngine.init();
-    patientListScreen.init();
+    patientListScreen.open();
     patientEditScreen.init();
     routerEngine.init();
-    // DataService.init();
-}
-$(document).ready(appInit);
+});

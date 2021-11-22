@@ -7,22 +7,12 @@ class DataServiceClass {
         return patientsData;
     }
     getById=(id)=>{
-        let result;
-        for(let i=0; i<patientsData.length; i++){     
-            if(id == patientsData[i].ID){
-                result = patientsData[i];
-            }
-        }
-        return result;
+        let data = patientsData.find(x => x.ID === id);
+        return data;
     }
     getIndexById = (id)=>{
-        let index;
-        for(let i=0; i<patientsData.length; i++){     
-            if(id == patientsData[i].ID){
-                index = i;
-            }
-        }
-        return index; 
+        let index = patientsData.findIndex(x => x.ID === id);
+        return index;
     }
     add = (currentPatientData)=>{
         let newID = this.getNewID();
@@ -47,7 +37,7 @@ class DataServiceClass {
         patientsData.splice(targetIndex ,1)
         return patientsData;
     }
-     getNewID = ()=>{
+    getNewID = ()=>{
         let max = patientsData[0].ID;
         for(let i=0;i<patientsData.length; i++){
             if(patientsData[i].ID > max){
