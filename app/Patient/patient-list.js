@@ -23,7 +23,8 @@ class PatientListScreen{
         $(".del-btn").click(this.onDeleteButtonClick)
     }
     onEditButtonClick = (e)=>{
-        var IdRowTarget =  $(e.target).parents("tr").data("id");
+        let rowID = $(e.target).parents("tr")
+        var IdRowTarget = rowID.data("id");
         $('.patient-id').html(IdRowTarget);
         patientEditScreen.open(IdRowTarget);
     }
@@ -31,7 +32,8 @@ class PatientListScreen{
         patientEditScreen.open();    
     } 
     onDeleteButtonClick=(e)=>{
-        var IdRowTarget =  $(e.target).parents("tr").data("id");
+        let rowID = $(e.target).parents("tr")
+        var IdRowTarget = rowID.data("id");
         DataService.Delete(IdRowTarget);  
     } 
 }
