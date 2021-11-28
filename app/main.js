@@ -1,6 +1,6 @@
 $(document).ready(function(){
     templateEngine.init();
-    patientListScreen.open();
-    patientEditScreen.init();
+    patientList.init();
+    patientEdit.init();
     routerEngine.init();
 });

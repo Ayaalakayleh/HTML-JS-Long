@@ -61,7 +61,8 @@
   right: 0;
   left: 170px;
 }
-.component .action-alert {
+.component .action-alert,
+.help-block {
   display: none;
 }
 #patient-edit {

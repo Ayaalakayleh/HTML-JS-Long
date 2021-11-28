@@ -10,7 +10,7 @@ class routerEngineClass {
         $(".component").hide();
     }
     navigate = (targetScreen) =>{
-        $(targetScreen).show();
+        $("."+targetScreen).show();
     }
     onActionLinkClick = (e) => {
         let target = $(e.target).data("target");
@@ -19,4 +19,3 @@ class routerEngineClass {
     }
 }
 let routerEngine = new routerEngineClass();
-// routerEngine.init();

@@ -1,7 +1,7 @@
-class PatientEditScreen{
+class PatientEdit{
     constructor(){
-        this.patientID;
-        this.formMode ;
+        this.patientID =null;
+        this.formMode=null ;
     }
     init=()=>{
         this.ToastrAlert();
@@ -13,6 +13,7 @@ class PatientEditScreen{
         if(!id){
             this.formMode ="New";      
             this.resetControls();
+            $(".delete-btn").hide();
         }
         else{
             this.formMode = "Edit";
@@ -28,74 +29,72 @@ class PatientEditScreen{
             "timeOut": "3000",      
         }
     }
-    onSaveButtonClick =(e)=>{ 
-        let checkValidation =  validationEngine.ValidateForm();
-     
-        if(checkValidation){
-            var currentPatientData = this.GetControlsData(this.patientID);
-            if(this.formMode == "Edit"){
-                DataService.edit(currentPatientData,this.patientID);
-                toastr.success('Edit Data Successfuly');
-            }     
-            else{
-                DataService.add(currentPatientData);
-                toastr.success('Add Data Successfuly');     
-            } 
-            setTimeout(function(){
-                routerEngine.onActionLinkClick(e); 
-                toastr.success('Saved Data Successfuly');
-            },1000)
-        }
-        else{
+    onSaveButtonClick =()=>{ 
+        var currentPatientData = this.GetControlsData(this.patientID);
+        
+        //-------
+        //** Validation
+        if(!validationEngine.ValidateForm()){
             toastr.error('failed saving');
             return;
         }
-        patientListScreen.renderTable(); 
+        //-------
+
+        if(this.formMode == "Edit"){
+            DataService.edit(this.patientID,currentPatientData);
+            toastr.success('Edit Data Successfuly');
+        }     
+        else{
+            DataService.add(currentPatientData);
+            toastr.success('Add Data Successfuly');     
+        } 
+        patientList.open();
     }
     LoadControlsData = (patientData) =>{
-        $("#FirstNameInput").val(patientData.fname);
-        $("#MiddleNameInput").val(patientData.mname);
-        $("#LastNameInput").val(patientData.lname);
-        $("#EmailInput").val(patientData.email);
+        $(".FirstNameInput").val(patientData.fname);
+        $(".MiddleNameInput").val(patientData.mname);
+        $(".LastNameInput").val(patientData.lname);
+        $(".EmailInput").val(patientData.email);
         $(".StatusValue").append($('<option>').html(patientData.status));
         var birthDate = moment(patientData.DOB).format('yyyy-MM-DD');
         let age = moment(birthDate).fromNow(true);  
-        $("#DateInput").val(birthDate);  
-        $("#AgeInput").val(age);
+        $(".DateInput").val(birthDate);  
+        $(".AgeInput").val(age);
     
         // Active
-        if(patientData.Active){
-            $('.ActiveInput').prop('checked', true);
-        }
+        $(".ActiveInput").attr('checked', patientData.Active);
+
         // Gender
         if(patientData.gender == 1){
-            $("#maleRadio1").prop('checked', true)
+            $(".maleRadio1").prop('checked', true)
         }
         else{
-            $("#femaleRadio2").prop('checked', true)
+            $(".femaleRadio2").prop('checked', true)
         }
         // Last check
         var checkDate = moment(patientData.lastCheck).format('yyyy-MM-DD')
-        $(".lastCheckInput").append($('<option>').html(checkDate));
+        $(".lastCheckInput").val(checkDate);
     }
     GetControlsData = () =>{   
-        var fname   = $("#FirstNameInput").val();
-        var mname   = $("#MiddleNameInput").val();
-        var lname   = $("#LastNameInput").val();
-        var email   = $("#EmailInput").val();
+        var fname   = $(".FirstNameInput").val();
+        var mname   = $(".MiddleNameInput").val();
+        var lname   = $(".LastNameInput").val();
+        var email   = $(".EmailInput").val();
         var status  = $(".StatusValue").val();
-        var DOB     = new Date($("#DateInput").val());
+        var DOB     = $(".DateInput").val();
         var lastCheck = $(".lastCheckInput").val();
-        var active;
+        var Active;
         var gender;
-    
-        if($('.ActiveInput').is(':checked')){
-            active = true;
+        var active;
+      
+        Active = $("input[name=active]:checked").val();
+        if (Active == "on") {
+            active = "true";
+        } else {
+            active = "false";
         }
-        else{
-          active = false ; 
-        } 
-        if($("#maleRadio1").is(':checked')){
+
+        if($(".maleRadio1").is(':checked')){
             gender = 1;
         }
         else{
@@ -123,9 +122,8 @@ class PatientEditScreen{
         $(".modal").modal("hide");
         DataService.Delete(this.patientID);  
         this.resetControls();
-        patientListScreen.renderTable(); 
+        patientList.open();
         toastr.success('Delete Data Successfuly');
     }
 }
-let patientEditScreen = new PatientEditScreen();
-patientEditScreen.init();
+let patientEdit = new PatientEdit();

@@ -7,19 +7,17 @@ class DataServiceClass {
         return patientsData;
     }
     getById=(id)=>{
-        let data = patientsData.find(x => x.ID === id);
-        return data;
+        return patientsData.find(Data => Data.ID === id);
     }
     getIndexById = (id)=>{
-        let index = patientsData.findIndex(x => x.ID === id);
-        return index;
+        return patientsData.findIndex(Data => Data.ID === id);
     }
     add = (currentPatientData)=>{
         let newID = this.getNewID();
         currentPatientData.ID = newID;
         patientsData.push(currentPatientData);
     }
-    edit = (currentPatientData,patientID) =>{
+    edit = (patientID,currentPatientData) =>{
         let patient_Data       = this.getById(patientID);
         patient_Data.fname     = currentPatientData.fname;
         patient_Data.mname     = currentPatientData.mname;
@@ -39,13 +37,12 @@ class DataServiceClass {
     }
     getNewID = ()=>{
         let max = patientsData[0].ID;
-        for(let i=0;i<patientsData.length; i++){
-            if(patientsData[i].ID > max){
-                max = patientsData[i].ID
+        patientsData.forEach(element => {
+            if(element.ID > max){
+                max = element.ID;
             }
-        }
+        });
         return max + 1 ;
     }
 }
 let DataService = new DataServiceClass();
-DataService.init();

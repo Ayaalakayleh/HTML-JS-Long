@@ -49,14 +49,14 @@ class TemplateEngineClass {
         }
     }
     datePipe=(date,formatParameter)=>{
-        let x =  moment(date).format(formatParameter);
-        return x;
+        let formatDate =  moment(date).format(formatParameter);
+        return formatDate;
     }
     statusPipe=(status)=>{
         if(status === 1){
             return "active";
         }
-        else if(status === 0){
+        else{
             return "not active";
         }
     }

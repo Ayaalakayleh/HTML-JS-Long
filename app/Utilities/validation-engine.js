@@ -2,24 +2,59 @@ class ValidationEngine{
     constructor(){}
     init=()=>{}
 
+    ValidateForm=()=>{
+        var isValid =true;
+        var str ="";
+        let elements = $("[data-validation]");
+        for(let i=0; i<elements.length; i++){
+            
+            let element = elements[i];
+            let target = $(element).data("validation");
+    
+            switch(target){
+                case "required":
+                    if( !this.validateRequireField($(element)) ){
+                        isValid = false;
+                        this.errorAlert($(element));
+                        str +=" field is required -";
+                    }
+                    break;
+                case "email":
+                    if( !this.vallidateEmailField($(element)) ){
+                        isValid = false;
+                        this.errorAlert($(element));
+                        str +=" Email is invalid -";
+                    }
+                    break;
+                case "positiveNumber" :
+                    if( !this.validatePositiveNumberField($(element)) ){
+                        isValid = false;
+                        this.errorAlert($(element));
+                        str += " Age number is invalid -";
+                    } 
+                    break;  
+                case "gender" :
+                    if( !this.validateGenderField() ){
+                        isValid = false;
+                        str += " gender is required -";
+                    } 
+                break;
+            }
+            this.showBoxAlert(str);
+        }
+        
+        return isValid; 
+    }
     errorAlert=(element)=>{
         element.parent('.form-group').addClass("has-error");
-        element.siblings("span").html("invalid");
+        element.siblings("span").html("invalid").show();
     }
-    showBoxAlert=(status,str)=>{
-        //success alert
-       if(status === 'success'){
-            $(".action-alert").removeClass("alert-danger");
-            $(".action-alert").addClass("alert-success");
-       }
-       // error alert
-       else if(status === 'error'){
-            $(".action-alert").removeClass("alert-success");
-            $(".action-alert").addClass("alert-danger");
-       }
+    showBoxAlert=(str)=>{
+        $(".action-alert").addClass("alert-danger");
         $(".action-alert").html(str).fadeIn();   
     }
     successAlert=()=>{
+        $(".action-alert").hide();
         $("input").parent('.form-group').removeClass("has-error");
         $("input").siblings("span").hide();
     }
@@ -42,54 +77,20 @@ class ValidationEngine{
     }
     vallidateEmailField=(element)=>{
         let pattern =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        if( pattern.test(element.val()) && element.val()!=='' ){
+        if( pattern.test(element.val())){
             return true;   
         }
         else{
             return false;
         }
     }
-    ValidateForm=()=>{
-        var isValid =true;
-        let elements = $("[data-validation]");
-        for(let i=0; i<elements.length; i++){
-            
-            let element = elements[i];
-            let target = $(element).data("validation");
-    
-            switch(target){
-                case "required":
-                    if( !this.validateRequireField($(element)) ){
-                        isValid = false;
-                        this.errorAlert($(element));
-                        this.showBoxAlert("error","name is invalid");
-                    }
-                    break;
-                case "email":
-                    if( !this.vallidateEmailField($(element)) ){
-                        isValid = false;
-                        this.errorAlert($(element));
-                        this.showBoxAlert("error","Email is invalid");
-                    }
-                    break;
-                case "positiveNumber" :
-                    if( !this.validatePositiveNumberField($(element)) ){
-                        isValid = false;
-                        this.errorAlert($(element));
-                        this.showBoxAlert("error","Age number is invalid");
-                    } 
-                break;   
-            }
-        }
-    
-        if(!isValid){
-            return false;
+    validateGenderField=()=>{
+        if($(".maleRadio1").is(':checked') || $(".femaleRadio2").is(':checked')){
+            return true;
         }
         else{
-            this.successAlert();
-            this.showBoxAlert("success","Data Saved successfully");
-            return true;
-        }   
+            return false;
+        }
     }
 }
 let validationEngine = new ValidationEngine();

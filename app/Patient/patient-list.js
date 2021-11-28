@@ -1,41 +1,46 @@
-class PatientListScreen{
+class PatientList{
     constructor(){ }
         
-    init=()=>{ }
+    init=()=>{ 
+        $(".add-btn").click(this.onAddButtonClick);
+        this.open();
+    }
         
     open=()=>{
         this.renderTable();
-        this.addEditClickEvent();
+        routerEngine.navigate('patient-list');
     }
     renderTable = ()=> {
         $(".patient-list-body").empty();
-        var list = $(".patient-list-body"); 
         var str = $(".template").html();  
-        for( let i=0; i<patientsData.length; i++){
-            var templete = templateEngine.renderTemplete(str,patientsData[i]);
-            list.append(templete);
+        
+        let data = DataService.getAll();
+        for( let i=0; i<data.length; i++){
+            var templete = templateEngine.renderTemplete(str,data[i]);
+            $(".patient-list-body").append(templete);
         } 
-        this.addEditClickEvent();
+        this.EditClickEvent();
+        this.DeleteClickEvent();
     }
-    addEditClickEvent=()=>{
-        $(".add-btn").click(this.onAddButtonClick);
+    EditClickEvent=()=>{
         $(".edit").click(this.onEditButtonClick);
-        $(".del-btn").click(this.onDeleteButtonClick)
+    }
+    DeleteClickEvent=()=>{
+        $(".del-btn").click(this.onDeleteButtonClick);
     }
     onEditButtonClick = (e)=>{
-        let rowID = $(e.target).parents("tr")
+        let rowID = $(e.target).closest("tr")
         var IdRowTarget = rowID.data("id");
         $('.patient-id').html(IdRowTarget);
-        patientEditScreen.open(IdRowTarget);
+        patientEdit.open(IdRowTarget);
     }
     onAddButtonClick = ()=>{
-        patientEditScreen.open();    
+        patientEdit.open();    
     } 
     onDeleteButtonClick=(e)=>{
-        let rowID = $(e.target).parents("tr")
+       let rowID = $(e.target).parents("tr")
         var IdRowTarget = rowID.data("id");
         DataService.Delete(IdRowTarget);  
     } 
 }
-let patientListScreen = new PatientListScreen();
-patientListScreen.init();
+let patientList = new PatientList();
