@@ -46,16 +46,16 @@ class ValidationEngine{
         return isValid; 
     }
     errorAlert=(element)=>{
-        element.parent('.form-group').addClass("has-error");
+        element.addClass("border border-danger");
         element.siblings("span").html("invalid").show();
     }
     showBoxAlert=(str)=>{
-        $(".action-alert").addClass("alert-danger");
+        $(".action-alert").addClass("alert alert-danger");
         $(".action-alert").html(str).fadeIn();   
     }
     successAlert=()=>{
         $(".action-alert").hide();
-        $("input").parent('.form-group').removeClass("has-error");
+        $("input").removeClass("border border-danger");
         $("input").siblings("span").hide();
     }
     validateRequireField=(element)=>{

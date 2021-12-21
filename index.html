@@ -31,16 +31,16 @@
             </div>
 
             <!-- content -->
-            <div class="content-container container-fluid">
+            <div class="content-container container">
 
                 <!-- ============================================ -->
                             <!-- patients-list page -->
                 <!-- ============================================ -->
                 <div class="patient-list component" id="patient-list">
                     <h1 class="title">patient-list</h1>
-                    <button class="btn btn-primary action-link add-btn" data-target="patient-edit">Add</button>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-info">
+                    <button class="btn btn-outline-primary action-link add-btn" data-target="patient-edit">Add</button>
+                    <div class="table-responsive text-center">
+                        <table class="table mt-4 lh-1"> 
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -77,74 +77,72 @@
                 <!-- ============================================ -->
                 <div class="patient-edit component" id="patient-edit">
                     <h1>patient-edit</h1>
-                    <div class="alert col-md-12 action-alert "></div>
-                    <button class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>
+                    <div class="col-md-12 action-alert "></div>
+                    <button class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>
                     <h3 class="patient-id"></h3>
-                    <form action="">
-                        <div class="col-sm-6">
+                    <form class="row mt-5">
+                        <div class="col-sm" > 
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="FirstNameInput">First Name:</label>
-                                <input type="text" class="form-control FirstNameInput" id="FirstNameInput" data-validation="required">
+                                <input type="text" class="form-control form-control-sm FirstNameInput" id="FirstNameInput" data-validation="required">
                                 <span class="help-block"></span>
                             </div>
                             
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="MiddleNameInput">Middle Name:</label>
-                                <input type="text" class="form-control MiddleNameInput" id="MiddleNameInput" data-validation="required">
+                                <input type="text" class="form-control form-control-sm MiddleNameInput" id="MiddleNameInput" data-validation="required">
                                 <span class="help-block"></span>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="LastNameInput">Last Name:</label>
-                                <input type="text" class="form-control LastNameInput" id="LastNameInput" data-validation="required">
+                                <input type="text" class="form-control form-control-sm LastNameInput" id="LastNameInput" data-validation="required">
                                 <span class="help-block"></span>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="exampleInputEmail1">Status</label>
-                                <select class="form-control StatusValue"> </select>
+                                <input class="form-control form-control-sm StatusValue"> </input>
                             </div>
 
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="active" class="ActiveInput">Active
-                                </label> 
+                            <div class="form-check">
+                                <input type="checkbox" name="active" class="form-check-input ActiveInput">
+                                <label class="form-check-label">Active</label>    
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm">
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="EmailInput">Email</label>
-                                <input type="email" class="form-control EmailInput" id="EmailInput" data-validation="email">
+                                <input type="email" class="form-control form-control-sm EmailInput" id="EmailInput" data-validation="email">
                                 <span class="help-block"></span>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="DateInput">Date of Birth</label>
-                                <input type="date" class="form-control DateInput" id="DateInput" >
+                                <input type="date" class="form-control form-control-sm DateInput" id="DateInput" >
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label>Last check</label>
-                                <input type="date" class="form-control lastCheckInput" >
+                                <input type="date" class="form-control form-control-sm lastCheckInput" >
                             </div>
 
-                            <div class="form-group" data-validation="gender">
-                             <label for="GenderInput">Gender
-                                <label class="radio-inline">
-                                    <input type="radio" name="gender" class="maleRadio1" value="option1"> male
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="gender" class="femaleRadio2" value="option2"> female
-                                </label>
-                             </label>
+                            <label for="GenderInput">Gender</label>
+                            <div class="form-check form-check-inline mb-2" data-validation="gender">
+                                <input type="radio" name="gender" class="form-check-input maleRadio1" id="male" value="option1"> 
+                                <label class="form-check-label" for="male"> male </label>
+                            </div>
+                            <div class="form-check form-check-inline" data-validation="gender" >
+                                <input type="radio" name="gender" class="form-check-input femaleRadio2" id="female" value="option2">
+                                <label class="form-check-label" for="female"> female </label>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <label for="AgeInput">Age</label>
-                                <input type="email" class="form-control AgeInput" id="AgeInput" placeholder="Age" data-validation="positiveNumber"> 
+                                <input type="email" class="form-control form-control-sm AgeInput" id="AgeInput" placeholder="Age" data-validation="positiveNumber"> 
                             </div>
                         </div>
                     </form>
@@ -178,9 +176,9 @@
                 <!-- ============================================ -->
                 <div class="user-list component"  id="user-list">
                     <h1 class="title">user-list</h1>
-                    <button class="btn btn-primary add-btn action-link" data-target="user-edit">Add</button>
+                    <button class="btn btn-outline-primary add-btn action-link" data-target="user-edit">Add</button>
                     <div class="table-responsive ">
-                        <table class="table table-striped table-bordered table-info">
+                        <table class="table table-striped table-bordered mt-5">
                             <thead>
                                 <tr>
                                     <th>ID</th>
