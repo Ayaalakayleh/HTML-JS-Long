@@ -8,17 +8,23 @@ class PatientList{
         
     open=()=>{
         this.renderTable();
-        routerEngine.navigate('patient-list');
+        // routerEngine.navigate('patient-list');
     }
     renderTable = ()=> {
-        $(".patient-list-body").empty();
-        var str = $(".template").html();  
-        
-        let data = DataService.getAll();
-        for( let i=0; i<data.length; i++){
-            var templete = templateEngine.renderTemplete(str,data[i]);
-            $(".patient-list-body").append(templete);
-        } 
+        $(".content-container").load("app/Patient/patientListScreen.html",function(responseTxt, statusTxt,xhr){
+            if(statusTxt == "success"){
+                $(".patient-list-body").empty();
+                var str = $(".template").html();  
+                
+                let data = DataService.getAll();
+                for( let i=0; i<data.length; i++){
+                    var templete = templateEngine.renderTemplete(str,data[i]);
+                    $(".patient-list-body").append(templete);
+                } 
+            }
+            // routerEngine.init();
+        });
+       
         this.EditClickEvent();
         this.DeleteClickEvent();
     }
@@ -43,4 +49,4 @@ class PatientList{
         DataService.Delete(IdRowTarget);  
     } 
 }
-let patientList = new PatientList();
+let patientList = new PatientList(); 

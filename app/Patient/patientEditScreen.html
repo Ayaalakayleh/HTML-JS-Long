@@ -1,0 +1,76 @@
+<div class="patient-edit component" id="patient-edit">
+    <h1>patient-edit</h1>
+    <div class="col-md-12 action-alert "></div>
+    <button class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>
+    <h3 class="patient-id"></h3>
+    <form class="row mt-5">
+        <div class="col-sm" > 
+
+            <div class="form-group mb-2">
+                <label for="FirstNameInput">First Name:</label>
+                <input type="text" class="form-control form-control-sm FirstNameInput" id="FirstNameInput" data-validation="required">
+                <span class="help-block"></span>
+            </div>
+            
+            <div class="form-group mb-2">
+                <label for="MiddleNameInput">Middle Name:</label>
+                <input type="text" class="form-control form-control-sm MiddleNameInput" id="MiddleNameInput" data-validation="required">
+                <span class="help-block"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="LastNameInput">Last Name:</label>
+                <input type="text" class="form-control form-control-sm LastNameInput" id="LastNameInput" data-validation="required">
+                <span class="help-block"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="exampleInputEmail1">Status</label>
+                <input class="form-control form-control-sm StatusValue"> </input>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" name="active" class="form-check-input ActiveInput">
+                <label class="form-check-label">Active</label>    
+            </div>
+        </div>
+
+        <div class="col-sm">
+
+            <div class="form-group mb-2">
+                <label for="EmailInput">Email</label>
+                <input type="email" class="form-control form-control-sm EmailInput" id="EmailInput" data-validation="email">
+                <span class="help-block"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="DateInput">Date of Birth</label>
+                <input type="date" class="form-control form-control-sm DateInput" id="DateInput" >
+            </div>
+
+            <div class="form-group mb-2">
+                <label>Last check</label>
+                <input type="date" class="form-control form-control-sm lastCheckInput" >
+            </div>
+
+            <label for="GenderInput">Gender</label>
+            <div class="form-check form-check-inline mb-2" data-validation="gender">
+                <input type="radio" name="gender" class="form-check-input maleRadio1" id="male" value="option1"> 
+                <label class="form-check-label" for="male"> male </label>
+            </div>
+            <div class="form-check form-check-inline" data-validation="gender" >
+                <input type="radio" name="gender" class="form-check-input femaleRadio2" id="female" value="option2">
+                <label class="form-check-label" for="female"> female </label>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="AgeInput">Age</label>
+                <input type="email" class="form-control form-control-sm AgeInput" id="AgeInput" placeholder="Age" data-validation="positiveNumber"> 
+            </div>
+        </div>
+    </form>
+    <div class="footer-page ">
+        <button class="btn btn-primary  save-btn" data-screen="list" data-target="app/Patient/patientListScreen.html">Save</button>
+        <button class="btn btn-danger action-link" data-screen="list" data-target="app/Patient/patientListScreen.html">Cancel</button>
+    </div>
+</div>

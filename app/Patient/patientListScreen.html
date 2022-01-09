@@ -1,0 +1,35 @@
+<div class="patient-list component" id="patient-list">
+    <h1 class="title">patient-list</h1>
+    <button class="btn btn-outline-primary action-link add-btn" data-target="app/Patient/patientEditScreen.html">Add</button>
+    <div class="table-responsive text-center">
+        <table class="table mt-4 lh-1"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Active</th>
+                    <th>Creation</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody class="patient-list-body"></tbody>
+        </table>
+        <template class="template">
+            <tr data-id={{ID}}>
+            <td>{{ID}}</td>
+            <td>{{fname}} {{mname}} {{lname}}</td>
+            <td>{{email}}</td>
+            <td>{{gender|gender|male-female}}</td>
+            <td>{{DOB|date|yyyy-MM-DD}}</td>
+            <td>{{Active|status|active-notActive}}</td>
+            <td>Created By: {{CreatedBy}} {{creationDate|date|yyyy-MM-DD}}</td>
+            <td><button class="btn btn-info action-link edit edit-btn" data-target="app/Patient/patientEditScreen.html" >Edit</button>
+                <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
+            </td>
+            </tr>
+        </template>
+    </div>
+</div>

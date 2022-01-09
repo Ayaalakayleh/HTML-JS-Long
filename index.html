@@ -25,134 +25,18 @@
             <div class="sidebar">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">Patients</li>
-                    <li class="sidebar-item action-link" data-target="patient-list">Patients</li>
-                    <li class="sidebar-item action-link" data-target="user-list">Users</li>
+                    <li class="sidebar-item action-link" data-screen="list" data-target="app/Patient/patientListScreen.html">Patients</li>
+                    <li class="sidebar-item action-link" data-target="app/User/userListScreen.html">Users</li>
                 </ul>
             </div>
 
             <!-- content -->
             <div class="content-container container">
 
-                <!-- ============================================ -->
-                            <!-- patients-list page -->
-                <!-- ============================================ -->
-                <div class="patient-list component" id="patient-list">
-                    <h1 class="title">patient-list</h1>
-                    <button class="btn btn-outline-primary action-link add-btn" data-target="patient-edit">Add</button>
-                    <div class="table-responsive text-center">
-                        <table class="table mt-4 lh-1"> 
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Gender</th>
-                                    <th>DOB</th>
-                                    <th>Active</th>
-                                    <th>Creation</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody class="patient-list-body"></tbody>
-                        </table>
-                        <template class="template">
-                            <tr data-id={{ID}}>
-                            <td>{{ID}}</td>
-                            <td>{{fname}} {{mname}} {{lname}}</td>
-                            <td>{{email}}</td>
-                            <td>{{gender|gender|male-female}}</td>
-                            <td>{{DOB|date|yyyy-MM-DD}}</td>
-                            <td>{{Active|status|active-notActive}}</td>
-                            <td>Created By: {{CreatedBy}} {{creationDate|date|yyyy-MM-DD}}</td>
-                            <td><button class="btn btn-info action-link edit edit-btn" data-target="patient-edit" >Edit</button>
-                                <button class="btn btn-danger del-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>            
-                            </td>
-                            </tr>
-                        </template>
-                    </div>
-                </div>
-
-                <!-- ============================================ -->
-                            <!-- patients-edit page -->
-                <!-- ============================================ -->
-                <div class="patient-edit component" id="patient-edit">
-                    <h1>patient-edit</h1>
-                    <div class="col-md-12 action-alert "></div>
-                    <button class="btn btn-outline-danger delete-btn" data-toggle="modal" data-target="#delete-Modal">Delete</button>
-                    <h3 class="patient-id"></h3>
-                    <form class="row mt-5">
-                        <div class="col-sm" > 
-
-                            <div class="form-group mb-2">
-                                <label for="FirstNameInput">First Name:</label>
-                                <input type="text" class="form-control form-control-sm FirstNameInput" id="FirstNameInput" data-validation="required">
-                                <span class="help-block"></span>
-                            </div>
-                            
-                            <div class="form-group mb-2">
-                                <label for="MiddleNameInput">Middle Name:</label>
-                                <input type="text" class="form-control form-control-sm MiddleNameInput" id="MiddleNameInput" data-validation="required">
-                                <span class="help-block"></span>
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="LastNameInput">Last Name:</label>
-                                <input type="text" class="form-control form-control-sm LastNameInput" id="LastNameInput" data-validation="required">
-                                <span class="help-block"></span>
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="exampleInputEmail1">Status</label>
-                                <input class="form-control form-control-sm StatusValue"> </input>
-                            </div>
-
-                            <div class="form-check">
-                                <input type="checkbox" name="active" class="form-check-input ActiveInput">
-                                <label class="form-check-label">Active</label>    
-                            </div>
-                        </div>
-
-                        <div class="col-sm">
-
-                            <div class="form-group mb-2">
-                                <label for="EmailInput">Email</label>
-                                <input type="email" class="form-control form-control-sm EmailInput" id="EmailInput" data-validation="email">
-                                <span class="help-block"></span>
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="DateInput">Date of Birth</label>
-                                <input type="date" class="form-control form-control-sm DateInput" id="DateInput" >
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label>Last check</label>
-                                <input type="date" class="form-control form-control-sm lastCheckInput" >
-                            </div>
-
-                            <label for="GenderInput">Gender</label>
-                            <div class="form-check form-check-inline mb-2" data-validation="gender">
-                                <input type="radio" name="gender" class="form-check-input maleRadio1" id="male" value="option1"> 
-                                <label class="form-check-label" for="male"> male </label>
-                            </div>
-                            <div class="form-check form-check-inline" data-validation="gender" >
-                                <input type="radio" name="gender" class="form-check-input femaleRadio2" id="female" value="option2">
-                                <label class="form-check-label" for="female"> female </label>
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <label for="AgeInput">Age</label>
-                                <input type="email" class="form-control form-control-sm AgeInput" id="AgeInput" placeholder="Age" data-validation="positiveNumber"> 
-                            </div>
-                        </div>
-                    </form>
-                    <div class="footer-page ">
-                        <button class="btn btn-primary  save-btn" data-target="patient-list">Save</button>
-                        <button class="btn btn-danger action-link" data-target="patient-list">Cancel</button>
-                    </div>
-                </div>
-                <!-- ====================================================================================================== -->
-                <!--========== Confirm Modal ============================================================================== -->
+               
+            <!-- patients-edit page -->
+              
+                <!--========== Confirm Modal ============= -->
                 <div class="modal fade" id="delete-Modal">
                     <div class="modal-dialog modal-xs">
                       <div class="modal-content">
@@ -171,55 +55,7 @@
                       </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                   </div><!-- /.modal -->
-                <!-- ============================================ -->
-                            <!-- user-list page -->
-                <!-- ============================================ -->
-                <div class="user-list component"  id="user-list">
-                    <h1 class="title">user-list</h1>
-                    <button class="btn btn-outline-primary add-btn action-link" data-target="user-edit">Add</button>
-                    <div class="table-responsive ">
-                        <table class="table table-striped table-bordered mt-5">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Gender</th>
-                                    <th>DOB</th>
-                                    <th>Active</th>
-                                    <th>Creation</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody class="user-list-body">
-                                <tr>
-                                    <td>1</td>
-                                    <td>user Name</td>
-                                    <td>email@gmail.com</td>
-                                    <td>male</td>
-                                    <td>15/5/1998</td>
-                                    <td>true</td>
-                                    <td>by aya alakayleh 6/9/2021</td>
-                                    <td><button class="btn btn-info action-link" data-target="user-edit">Edit</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                 
-                <!-- ============================================ -->
-                            <!-- user-edit page -->
-                <!-- ============================================ -->
-                <div class="user-edit component" id="user-edit">
-                    <h1>user-edit</h1>
-                    <div class="footer-page">
-                        <button class="btn btn-primary action-link" data-target="user-list">Save</button>
-                        <button class="btn btn-danger action-link" data-target="user-list">Cancel</button>
-                    </div>
-                </div>
-
-
+     
             </div>
         </div>
     </body>
